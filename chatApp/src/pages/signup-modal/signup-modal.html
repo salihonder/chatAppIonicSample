@@ -1,0 +1,81 @@
+<!--
+  Generated template for the SignupModalPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-buttons end>
+        <button ion-button (click)="closeModal()">
+          <ion-icon name="close"></ion-icon>
+        </button>
+    </ion-buttons>
+    <ion-title>Create An Account</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    <p style="text-align:center;margin:10px;" >
+
+        <img src="../assets/imgs/profile.png" alt=""
+          class="img-circle" style="width: 35vw; min-width: 35vw;border-radius: 50%;"><br>
+       
+    </p>
+
+  <form [formGroup]="signupForm" (submit)="signupUser()" novalidate>
+
+    <ion-item>
+      <ion-label stacked>Name</ion-label>
+      <ion-input formControlName="name" type="text" placeholder="Your name"
+        [class.invalid]="!signupForm.controls.name.valid && 
+         signupForm.controls['name'].dirty"></ion-input>
+    </ion-item>
+
+    <ion-item class="error-message" *ngIf="!signupForm.controls.name.valid  && 
+      signupForm.controls['name'].dirty">
+      <p>Name must be between 2 and 20 characters</p>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>Email</ion-label>
+      <ion-input formControlName="email" type="email" placeholder="Your email address"
+        [class.invalid]="!signupForm.controls.email.valid && 
+        signupForm.controls['email'].dirty"></ion-input>
+    </ion-item>
+    <ion-item class="error-message" *ngIf="!signupForm.controls.email.valid  && 
+    signupForm.controls['email'].dirty">
+      <p>Please enter a valid email.</p>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>Password</ion-label>
+      <ion-input formControlName="password" type="password"  placeholder="Your password"
+        [class.invalid]="!signupForm.controls.password.valid && 
+        signupForm.controls['password'].dirty"></ion-input>
+    </ion-item>
+    <ion-item class="error-message" *ngIf="!signupForm.controls.password.valid  && 
+      signupForm.controls['password'].dirty">
+      <p>Your password needs more than 6 characters.</p>
+    </ion-item>
+
+    <ion-item>
+        <ion-label stacked>Phone</ion-label>
+        <ion-input formControlName="phone" type="text"  placeholder="Your phone"
+          [class.invalid]="!signupForm.controls.phone.valid && 
+          signupForm.controls['phone'].dirty"></ion-input>
+      </ion-item>
+      <ion-item class="error-message" *ngIf="!signupForm.controls.phone.valid  && 
+        signupForm.controls['phone'].dirty">
+        <p>Your phone number must be 10 digits.</p>
+      </ion-item>
+
+    <button ion-button block type="submit">
+      Create an Account
+    </button>
+
+  </form>
+</ion-content>

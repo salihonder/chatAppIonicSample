@@ -1,0 +1,78 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Chat Example App
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+
+<ion-content no-bounce>
+  <div *ngIf="getAuthStatus()">
+        <div class="headerArea">
+            
+       
+            
+            <ion-list>
+                <ion-item>
+                  <h1 item-start>Welcome, {{ auth.getUserData() }}</h1>
+                  <button ion-button item-end color="dark" (click)="logout()">Log Out</button>
+                </ion-item>
+            </ion-list>
+        </div>
+        <div class="middleArea">
+          <div *ngFor="let message of chatMessages">
+              [{{message.user}} ({{message.datetime}}) ] : {{message.text}}
+          </div>
+          
+        </div>
+        <div class="bottomArea">
+            <ion-input   type="text" [(ngModel)]="message" placeholder="Type a message">
+              </ion-input>
+              <button ion-button block (click)="sendMessage()">
+                  Send
+              </button>
+        </div>
+        
+
+        
+  </div>
+
+  <div *ngIf="!getAuthStatus()">
+  <form [formGroup]="loginForm" (submit)="loginUser()" novalidate>
+
+    <ion-item>
+      <ion-label stacked>Email</ion-label>
+      <ion-input #email formControlName="email" type="email" placeholder="Your email address"
+        [class.invalid]="!loginForm.controls.email.valid && loginForm.controls['email'].dirty"></ion-input>
+    </ion-item>
+    <ion-item class="error-message" *ngIf="!loginForm.controls.email.valid  &&
+      loginForm.controls['email'].dirty">
+      <p>Please enter a valid email.</p>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>Password</ion-label>
+      <ion-input #password formControlName="password" type="password" placeholder="Your password"
+        [class.invalid]="!loginForm.controls.password.valid &&
+          loginForm.controls['password'].dirty"></ion-input>
+    </ion-item>
+    <ion-item class="error-message" *ngIf="!loginForm.controls.password.valid  &&
+      loginForm.controls['password'].dirty">
+      <p>Your password needs more than 6 characters.</p>
+    </ion-item>
+
+    <button ion-button block type="submit">
+      Login
+    </button>
+
+  </form>
+
+  
+  <button ion-button block clear (click)="createAccount()">
+      Need an account?
+  </button>
+
+</div>
+</ion-content>

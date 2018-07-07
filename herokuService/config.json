@@ -1,0 +1,5 @@
+{
+  "secret": "a chat sample",
+  "audience": "nodejs-jwt-auth",
+  "issuer": "salih onder"
+}
